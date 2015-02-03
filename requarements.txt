@@ -1,0 +1,6 @@
+# зависимости проекта
+
+tkinter
+Pillow
+Wand
+PyPDF2
