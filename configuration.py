@@ -12,12 +12,15 @@ class app_conf(object):
     #min_height_a4 = 650
 
     toolbox_height = 11
-    status_bar_height = 14
+    #status_bar_height = 14
     #vertical_line_ico_box = 25   #
     text_label = 25 # высота блока отводимого для отображения номеров страниц
     ico_size = 25 # размеры иконки
 
     rez = 120 # DPI для геперируемой странички
+    title_bar_height = 30 # возьмём с запасом высоту заголовка окна, данный параметр зависит от текущей темы Windows
+    status_bar_height = 65
+
 
     def __int__(self):
         pass

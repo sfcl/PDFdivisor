@@ -1,80 +1,85 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import sys
 import os.path
 from os import environ
 
-from tkinter import Tk, Frame, Button, Label, messagebox, StringVar, LEFT, filedialog, PhotoImage
-from tkinter import FLAT
+from tkinter import *
+from tkinter import filedialog, messagebox
 from flow import ImageGallary
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from configuration import app_conf as ac
 from share_var import share_list_diap
+from my_status_bar import my_status_bar
 
+# цель сделать доступными dll библиотеки imagemagic и gs из каталога программы
+# когда данные библиотеки не устаовлены
 try:
     approot = os.path.dirname(os.path.abspath(__file__))
-except NameError:  # We are the main py2exe script, not a module
-    import sys
+except NameError:
     approot = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 old_path = environ['PATH']
+environ['PATH'] = approot + ';' + old_path
+file_name = os.path.abspath(sys.argv[0]).split(os.sep)[-1]
+ext = file_name.split('.')[-1]
 
-#print('old_path=', old_path)
+if ext == 'exe':
+    environ['MAGICK_CODER_MODULE_PATH'] = approot + '/modules/coders'
 
-environ['PATH'] = old_path + ';' + approot
 
-environ['MAGICK_CODER_MODULE_PATH'] = approot + '\\modules\\coders'
-
-class App(object):
-    def __init__(self, master):
-
+class App():
+    def __init__(self, master, main_screen_height):
+        self.main_screen_height = main_screen_height
         self.pdf_file_name = ''
         self.output_directory = ''
         self.pdf_split_range = share_list_diap()
         self.frame = Frame(master, relief=FLAT, width=win_width, height=11)
-
         self.button_pannel = Frame(self.frame, relief="flat")
         #button_pannel.grid(row=0, column=0, columnspan=3, sticky=W+N)
-        self.button_pannel.grid(row=0, column=0)
+        self.button_pannel.pack(side=TOP, fill=BOTH, expand=YES)
 
-        add_gif = PhotoImage(file=approot + '\\ico\\add.gif')
+        add_gif = PhotoImage(file=approot + '/ico/add.gif')
         self.b1 = Button(self.button_pannel, command=self.open_file, image=add_gif)
         self.b1.image = add_gif
         self.b1.pack(padx=2, pady=2, side=LEFT)
 
-        openfolder = PhotoImage(file=approot + '\\ico\\openfolder.gif')
+        openfolder = PhotoImage(file=approot + '/ico/openfolder.gif')
         self.b2 = Button(self.button_pannel, image=openfolder, command=self.open_folder)
         self.b2.image = openfolder
         self.b2.pack(padx=2, pady=2, side=LEFT)
 
-        runico = PhotoImage(file=approot + '\\ico\\run.gif')
+        runico = PhotoImage(file=approot + '/ico/run.gif')
         self.b3 = Button(self.button_pannel, image=runico, command=self.run_split)
         self.b3.image = runico
         self.b3.pack(padx=2, pady=2, side=LEFT)
 
-        aboutico = PhotoImage(file=approot + '\\ico\\about.gif')
+        aboutico = PhotoImage(file=approot + '/ico/about.gif')
         self.b4 = Button(self.button_pannel, image=aboutico, command=self.about)
         self.b4.image = aboutico
         self.b4.pack(padx=2, pady=2, side=LEFT)
 
-        exitico = PhotoImage(file=approot + '\\ico\\exit.gif')
+        exitico = PhotoImage(file=approot + '/ico/exit.gif')
         self.b5 = Button(self.button_pannel, image=exitico, command=lambda: self.quit(master))
         self.b5.image = exitico
         self.b5.pack(padx=2, pady=2, side=LEFT)
 
+
+        self.context_line = my_status_bar(self.frame)
+        self.context_line.pack(side=BOTTOM, fill=X)
         # отрисовываем пустую канву при запуске программы
-        self.flow = ImageGallary(self.frame, l3_text, self.pdf_file_name, self.pdf_split_range, approot)
 
-        self.context_line = Label(self.frame, textvariable=l3_text)
-        self.context_line.grid(row=2, column=0)
-
+        self.flow = ImageGallary(self.frame, self.context_line, self.pdf_split_range, approot,
+                                 self.main_screen_height)
+        self.flow.show_void_canvas()
         self.frame.pack()
 
     def open_file(self):
         self.pdf_file_name = filedialog.askopenfilename(filetypes=[('PDF документ', '*.pdf',)],
                                                         title='Выберите PDF файл',
                                                         initialdir='E:\\work\\darsy\\projects\\prepare_pdf')
-        self.flow = ImageGallary(self.frame, l3_text, self.pdf_file_name, self.pdf_split_range, approot)
+        self.flow.show_selected_pdf(self.pdf_file_name)
 
     def open_folder(self):
         self.output_directory = filedialog.askdirectory(title='Выберите каталог сохранения файлов', parent=self.frame)
@@ -82,7 +87,7 @@ class App(object):
     def about(self):
         title = 'О программе'
         message = "Автор программы: Хозяинов Максим \nВерсия: %s \nДомашняя страничка: http://darsytools.org/divisor/ "
-        message = (message % (__version__,))
+        message = (message % (version,))
         messagebox.showinfo(title, message)
 
     def run_split(self):
@@ -132,12 +137,9 @@ class App(object):
                 cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
                     '-' + str(tmp_list[diap][1]) + '.pdf'
                 infile = PdfFileReader(open(self.pdf_file_name, 'rb'))
-                #print('diap = ', tmp_list[diap][0], tmp_list[diap][1])
                 range_length = tmp_list[diap][1] - tmp_list[diap][0] + 1
-                #print('len = ', range_length)
                 outfile = PdfFileWriter()
                 for pgs in range(range_length):
-                    #print('page num = ', tmp_list[diap][0] + pgs)
                     p = infile.getPage(tmp_list[diap][0] + pgs - 1)
                     outfile.addPage(p)
 
@@ -148,11 +150,9 @@ class App(object):
     def quit(self, master):
         master.destroy()
 
+version = '0.1.1'
 
-__version__ = '0.0.16'
 
-
-#print('new_path=',environ['PATH'] )
 root = Tk()
 root.title(ac.title)
 
@@ -161,19 +161,17 @@ min_width_a4 = ac.min_width_a4
 min_height_a4 = ac.min_height_a4
 
 # выполняем центрирование окна
-w = root.winfo_screenwidth()
-h = root.winfo_screenheight()
+w = root.winfo_vrootwidth()
+h = root.winfo_vrootheight()
+
 # в данном случае предусмотрена возможнасть открытия PDF с альбомной ориентацией
-win_width = min_height_a4 + 25 + 25
-win_height = min_height_a4 + ac.toolbox_height + ac.status_bar_height
+win_width = min_height_a4 + ac.ico_size
+#win_height = min_height_a4 + ac.toolbox_height + ac.status_bar_height
 
 x = (w // 2) - (win_width // 2)
 y = 0
-#root.geometry("%dx%d%+d+%d" % (win_width, win_height, x, y))
 root.geometry("+%d+%d" % (x, y,))
-root.resizable(0, 0)    # запрет на изменение размеров родительского фрейма
+#root.resizable(0, 0)    # запрет на изменение размеров родительского фрейма
 
-#root.config(width=win_width, height=11)
-l3_text = StringVar()  # инициализируем строку состояния в нижней части программы
-app = App(root, )
+app = App(root, h)
 root.mainloop()

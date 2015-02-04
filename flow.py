@@ -4,29 +4,32 @@
 import io
 import warnings
 from tkinter import *
+from tkinter import filedialog
 from PIL import ImageTk, Image
 from PyPDF2 import PdfFileReader
 from wand.image import Image as Image2 # Image затеняет класс в библиотеке tkinter
 from algo2 import veiw_smart_range
 from configuration import app_conf as ac
+from resize_canvas import ScrolledCanvas
 
 class ImageGallary(object):
-    def __init__(self, parent, text_label, pdf_file, pdf_split_range, approot):
-        # set_select_pages - множество содержащее выбранные кнопки ножниц
-        # source_dict - словарь, содержащий список картинок
+    def __init__(self, parent, text_label, pdf_split_range, approot, root_height):
         # parent - родительский фрейм
+        # text_label - объект скорллируемого статусбара
+        # pdf_split_range - список картежей с разбивкой страниц
+        # approot - строка, содержащая полный путь до данного исполняемого файла
+        # root_height - высота глобального экрана Windows
         self.ig_pdf_split_range = pdf_split_range
-        self.work_pdf_file = pdf_file
+        self.work_pdf_file = ''
         self.status_bar_text = text_label
         self.mydict = {}
-        #self.pdict = source_dict
         self.ico_dict = {}
         self.ico_objs = {}
         self.dict_lines = {}
         self.tmp_list = []
         self.text_label = ac.text_label
         self.text_box_height = ac.toolbox_height
-        #self.vertical_line_ico_box = ac.vertical_line_ico_box
+        self.parent_height = root_height
         self.width = ac.min_height_a4
         self.height = ac.min_height_a4
         self.pdf_big_blob = {}
@@ -36,29 +39,24 @@ class ImageGallary(object):
         # картинка должна быть квадратной
         self.active_ico_button = ImageTk.PhotoImage(file=approot + '\\ico\\active.gif')
         self.normal_ico_button = ImageTk.PhotoImage(file=approot + '\\ico\\normal.gif')
-        frame = Frame(parent, bd=2, relief="flat")
 
-        self.vbar = Scrollbar(frame, orient=VERTICAL)
-        self.vbar.grid(row=0, column=1, sticky=N+S)
+        self.frame_for_canvas = Frame(parent, relief="flat")
+        self.frame_for_canvas.pack(fill=BOTH, expand=YES)
 
-        other_const = 50
-        if self.work_pdf_file:
-            self.c = Canvas(frame, width=self.width + self.ico_size, height=self.width + other_const,
-                            bg='white', yscrollcommand=self.vbar.set)
 
-            self.c.config(scrollregion=(0, 0, self.width+self.ico_size, self.calculate_height()))
-            self.show_gallery(master_canvas=self.c)
-        else:
-            self.c = Canvas(frame, width=self.width + self.ico_size, height=self.width + other_const, bg='white',
-                        yscrollcommand=self.vbar.set)
+    def show_void_canvas(self,):
+        self.c = ScrolledCanvas(self.frame_for_canvas, )
+        self.c.config(bg='white',)
 
-        self.c.grid(row=0, column=0, sticky=N+E+W+S)
-        self.vbar.config(command=self.c.yview)
-
-        
-        #self.show_gallery()
-        #frame.grid(row=3, column=0, columnspan=2, sticky=W+E+N+S)
-        frame.grid(row=1, column=0)
+    def show_selected_pdf(self, name_pdf_file):
+        self.work_pdf_file = name_pdf_file
+        self.status_bar_text.push_text('')  # сбрасываем диапазоны выбранных страниц при новом открытии документа
+        self.c.delete(ALL)  # очищаем от предыдущего контента
+        self.c.config(width=self.width + self.ico_size,)
+        self.c.config(height=self.parent_height - ac.status_bar_height - ac.title_bar_height - 2*ac.ico_size,)
+        self.c.config(bg='white')
+        self.c.config(scrollregion=(0, 0, self.width+self.ico_size, self.calculate_height()))
+        self.show_gallery()
 
     def calculate_height(self):
         '''
@@ -85,6 +83,7 @@ class ImageGallary(object):
                 elif w_px > h_px:
                     book_orient = 'alb'
                     result_height += ac.min_width_a4 + ac.text_label + ac.ico_size
+                    #result_height += ac.min_height_a4 + ac.text_label + ac.ico_size
 
                 else:
                     book_orient = 'quad'
@@ -94,7 +93,7 @@ class ImageGallary(object):
         return result_height - ac.ico_size  # после последней страницы дабавлять кнопку ножниц смысла нет
 
 
-    def show_gallery(self, master_canvas = NONE):
+    def show_gallery(self):
         for num_img in range(self.pages_count):
             full_file_name = self.work_pdf_file + '[' + str(num_img) + ']'
             # производим построничную конвертацию Pdf файла в jpeg формат
@@ -149,8 +148,6 @@ class ImageGallary(object):
 
             scroll_height = scroll_height + self.ico_size
 
-    def dump(self, temp):
-        pass
 
     def ico_click(self, event):
         canvas = event.widget
@@ -205,5 +202,7 @@ class ImageGallary(object):
                 tmp_str = tmp_str + str(mod_tmp_list[typle_elem][0]) + ', '
             else:
                 tmp_str = tmp_str + str(mod_tmp_list[typle_elem][0]) + '-' + str(mod_tmp_list[typle_elem][1]) + ', '
-        self.status_bar_text.set(tmp_str)
+        #self.status_bar_text.set(tmp_str)
+        self.status_bar_text.push_text(tmp_str)
+
 
