@@ -21,7 +21,8 @@ except NameError:
     approot = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 old_path = environ['PATH']
-environ['PATH'] = approot + ';' + old_path
+environ['PATH'] = old_path + ';' + approot
+#print(environ['PATH'])
 file_name = os.path.abspath(sys.argv[0]).split(os.sep)[-1]
 ext = file_name.split('.')[-1]
 
@@ -70,9 +71,8 @@ class App():
         self.context_line.pack(side=BOTTOM, fill=X)
         # отрисовываем пустую канву при запуске программы
 
-        self.flow = ImageGallary(self.frame, self.context_line, self.pdf_split_range, approot,
-                                 self.main_screen_height)
-        self.flow.show_void_canvas()
+        self.flow = ImageGallary(self.frame, approot, self.main_screen_height)
+        self.flow.show_void_canvas(pdf_split_range=self.pdf_split_range, text_label=self.context_line)
         self.frame.pack()
 
     def open_file(self):
@@ -150,7 +150,7 @@ class App():
     def quit(self, master):
         master.destroy()
 
-version = '0.1.1'
+version = '0.1.2'
 
 
 root = Tk()

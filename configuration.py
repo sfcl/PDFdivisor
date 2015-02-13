@@ -21,6 +21,7 @@ class app_conf(object):
     title_bar_height = 30 # возьмём с запасом высоту заголовка окна, данный параметр зависит от текущей темы Windows
     status_bar_height = 65
 
+    magic_constant = 3 # максимальное кол-во страниц, рендеринг которых происходит сразу при загрузке файла
 
     def __int__(self):
         pass
