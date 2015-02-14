@@ -2,6 +2,7 @@
 # -*- encode:utf-8 -*-
 
 from tkinter import *
+from configuration import app_conf as ac
 
 class my_status_bar(object):
     
@@ -9,13 +10,14 @@ class my_status_bar(object):
         self.frame = Frame(master, bd=2, relief=FLAT)
         self.frame.grid_rowconfigure(0, weight=1)
         self.frame.grid_columnconfigure(0, weight=1)
+        self.frame.config(bg=ac.bg)
 
         self.yscrollbar = Scrollbar(self.frame)
         self.yscrollbar.grid(row=0, column=1, sticky=N+S)
 
         self.status_bar = Text(self.frame)
         self.status_bar.config(state=DISABLED) # ставим блокироку
-        self.status_bar.config(bd=0, relief=GROOVE, bg="#D4D0C8") # украшательства
+        self.status_bar.config(bd=0, relief=GROOVE, bg=ac.bg) # украшательства
         self.status_bar.config(height=2, padx = 5, pady = 5, wrap=WORD) # высота в 2 строки
         self.yscrollbar.config(command=self.status_bar.yview)
         self.status_bar.config(yscrollcommand=self.yscrollbar.set)

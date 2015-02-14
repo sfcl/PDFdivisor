@@ -20,6 +20,7 @@ class ScrolledCanvas(Canvas):
         self.update_idletasks()
         self.config(borderwidth=0)
         self.config(**kwargs)
+        self.config(highlightthickness=0,) # убираем бордер в 2 пикселя вокруг канвы
         # --------
         self.ranges_tree = intervaltree.IntervalTree()
         self.view_port_height = 0
@@ -53,7 +54,7 @@ class ScrolledCanvas(Canvas):
 
     def callback(self, event):
         '''
-
+        Метод-обработчик, срабатывающий после отпускания левой клавиши мыши
         '''
         procent = self.vbar.get()[1]
         sy = self.view_port_height * procent
@@ -102,7 +103,13 @@ class ScrolledCanvas(Canvas):
 
                 # в text_label пишем номер странички
                 # рисуем номер странички
-                x_coord_text = int(self.width/2)
+                if self.page_range_coord[np].orient == 'b':
+                    x_coord_text = int(ac.min_width_a4 / 2)
+                elif self.page_range_coord[np].orient == 'a':
+                    x_coord_text = int(ac.min_height_a4 / 2)
+                else:
+                    x_coord_text = int(ac.min_height_a4 / 2)
+
                 y_coord_text = y_offset+int(ac.text_label/2)
                 self.create_text(x_coord_text, y_coord_text, text=int(np + 1), fill='black')
                 # рисуем иконку с зелёными ножницами
@@ -110,7 +117,7 @@ class ScrolledCanvas(Canvas):
                 if (np + 1) == self.page_counts:
                     break
                 # расчитываем координаты x и y на холсте для иконки ножниц
-                x_coord_ico = ac.min_width_a4
+                x_coord_ico = ac.min_height_a4
                 y_coord_ico = y_offset + ac.text_label
 
                 # помещаем иконку зеленых ножниц на канву
@@ -144,7 +151,16 @@ class ScrolledCanvas(Canvas):
             # ресайзим jpeg до нужного (настраиваемого) размера для последующего отображения
             file_like = io.BytesIO(ib1)
             im = Image.open(file_like)
-            im.thumbnail((ac.min_width_a4, ac.min_height_a4,), Image.ANTIALIAS)
+
+
+            if self.page_range_coord[num_img].orient == 'b':     # если ориентация страницы книжная, то
+                im.thumbnail((ac.min_width_a4, ac.min_height_a4,), Image.ANTIALIAS)
+            elif self.page_range_coord[num_img].orient == 'a':   # если ориентация страницы альюомная, то
+                im.thumbnail((ac.min_height_a4, ac.min_width_a4, ), Image.ANTIALIAS)
+            else:                                       # во всех остальных случаях
+                im.thumbnail((ac.min_height_a4, ac.min_height_a4, ), Image.ANTIALIAS)
+
+
             # для этого конвертируем blob в ImageTk.PhotoImage
             # сохраняем объекты ImageTk.PhotoImage ресайзенных картинок в хэше
             self.pdf_big_blob[num_img] = ImageTk.PhotoImage(im)
@@ -152,8 +168,19 @@ class ScrolledCanvas(Canvas):
 
             # выполняем отрисовку картинок на master_canvas'е
 
-            x_offset = int(self.width/2)
-            y_offset = int(self.height/2)
+            if self.page_range_coord[num_img].orient == 'b':
+                x_offset = int(ac.min_width_a4 / 2)
+            elif self.page_range_coord[num_img].orient == 'a':
+                x_offset = int(ac.min_height_a4 / 2)
+            else:
+                x_offset = int(ac.min_height_a4 / 2)
+
+            if self.page_range_coord[num_img].orient == 'b':
+                y_offset = int(ac.min_height_a4 / 2)
+            elif self.page_range_coord[num_img].orient == 'a':
+                y_offset = int(ac.min_width_a4 / 2)
+            else:
+                y_offset = int(ac.min_height_a4 / 2)
 
             # отрисовываем картинку на канве
             self.create_image(x_offset, y_offset + self.page_range_coord[num_img].y_offset,

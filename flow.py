@@ -39,19 +39,21 @@ class ImageGallary(object):
         self.c.status_bar_text = text_label
 
     def show_selected_pdf(self, name_pdf_file):
+        self.c.first_render = True
         self.c.work_pdf_file = name_pdf_file
         self.c.status_bar_text.push_text('')  # сбрасываем диапазоны выбранных страниц при новом открытии документа
         self.c.delete(ALL)  # очищаем от предыдущего контента
-        self.c.config(width=self.width + self.ico_size,)
+        self.c.config(width=ac.min_height_a4 + self.ico_size,)
         self.c.view_port_height = self.parent_height - ac.status_bar_height - ac.title_bar_height - 2*ac.ico_size
         self.c.config(height=self.c.view_port_height,)
         self.c.config(bg='white')
         self.full_canvas_height = self.calculate_height
         #self.c.koef = self.full_canvas_height / view_port_height
         self.c.config(scrollregion=(0, 0, self.width+self.ico_size, self.full_canvas_height))
+        self.c.set_select_pages = set() # очищаем мнодество выбранных диапазонов
 
         if self.c.page_counts <= ac.magic_constant:
-            # рендеринг все страницы, что есть в документе
+            # рендеринг всех страниц, какие есть в документе
             self.c.render_pages([le for le in range(self.c.page_counts)])
         else:
             # рендерим только первые ac.magic_constant страниц, остальные бужем рендерить по ходу скроллирования
@@ -64,8 +66,7 @@ class ImageGallary(object):
         Также вычисляет результирующую высоту скроллируемой канвы.
         Также производим инициализацию словаря self.c.page_range_coord по которому потом будем итерироваться
         '''
-        y_offset = 0
-        book_orient = 'book'    # переменная принимает значения из списка: book, alb, quad. Определяет ореинтацию.
+
         warnings.filterwarnings('ignore')   # отключаем все нунужные сообщения ;-)
 
         # иногда случается, что пользователь открыл окно выбора файла, ничего не выбрал, и закрыл.
@@ -78,6 +79,7 @@ class ImageGallary(object):
             self.c.page_counts = pypdf2obj.numPages
             result_height = 0
             y_offset = 0
+
             for pg in range(self.c.page_counts):
                 tmp_pg = pypdf2obj.getPage(pg)
 
@@ -103,7 +105,7 @@ class ImageGallary(object):
                 long_y_offset = y_offset + page_height + ac.ico_size + ac.text_label
                 self.c.ranges_tree.addi(y_offset, long_y_offset-1, pg)
 
-                # смещение по оси Х следующей странички
+                # смещение по оси Y следующей странички
                 if book_orient == 'b':
                     y_offset = y_offset + ac.min_height_a4 + ac.text_label + ac.ico_size
                 elif book_orient == 'a':
@@ -112,5 +114,7 @@ class ImageGallary(object):
                     y_offset = y_offset + ac.min_height_a4 + ac.text_label + ac.ico_size
                 else:
                     print('Error. C\'nt get page orient!')
+
+
 
         return result_height - ac.ico_size  # после последней страницы дабавлять кнопку ножниц смысла нет

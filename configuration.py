@@ -10,7 +10,7 @@ class app_conf(object):
     min_width_a4 = 446
     min_height_a4 = 631
     #min_height_a4 = 650
-
+    bg = "#D4D0C8"
     toolbox_height = 11
     #status_bar_height = 14
     #vertical_line_ico_box = 25   #

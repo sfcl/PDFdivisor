@@ -37,9 +37,11 @@ class App():
         self.output_directory = ''
         self.pdf_split_range = share_list_diap()
         self.frame = Frame(master, relief=FLAT, width=win_width, height=11)
+        self.frame.config(bg=ac.bg)
+
         self.button_pannel = Frame(self.frame, relief="flat")
-        #button_pannel.grid(row=0, column=0, columnspan=3, sticky=W+N)
         self.button_pannel.pack(side=TOP, fill=BOTH, expand=YES)
+        self.button_pannel.config(bg=ac.bg)
 
         add_gif = PhotoImage(file=approot + '/ico/add.gif')
         self.b1 = Button(self.button_pannel, command=self.open_file, image=add_gif)
@@ -150,11 +152,12 @@ class App():
     def quit(self, master):
         master.destroy()
 
-version = '0.1.2'
+version = '0.1.4'
 
 
 root = Tk()
 root.title(ac.title)
+root.config(bg=ac.bg)
 
 # данные значения подобраны опытным путём для PDF в формате А4.
 min_width_a4 = ac.min_width_a4
