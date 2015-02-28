@@ -4,12 +4,13 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import ttk
-import io
-from wand.image import Image as Image2 # Image затеняет класс в библиотеке tkinter
+#import io
+#from wand.image import Image as Image2 # Image затеняет класс в библиотеке tkinter
 import intervaltree
 from algo2 import veiw_smart_range
 from page_range_coord import page_coords
 from configuration import app_conf as ac
+from pdf2img import convert
 
 class ScrolledCanvas(Canvas):
     '''
@@ -142,15 +143,20 @@ class ScrolledCanvas(Canvas):
             if self.page_range_coord[num_img].render :
                 continue
 
-            full_file_name = self.work_pdf_file + '[' + str(num_img) + ']'
+            img_name = '56789034.jpeg'
+            convert(filename=self.work_pdf_file, rez=ac.rez, page_number=num_img + 1, cache_img=img_name)
+
+
+            #full_file_name = self.work_pdf_file + '[' + str(num_img) + ']'
             # производим построничную конвертацию Pdf файла в jpeg формат
-            with Image2(filename=full_file_name, resolution=ac.rez) as img:
-                img.format = 'jpeg'
-                ib1 = img.make_blob()
+            #with Image2(filename=full_file_name, resolution=ac.rez) as img:
+            #    img.format = 'jpeg'
+            #    ib1 = img.make_blob()
 
             # ресайзим jpeg до нужного (настраиваемого) размера для последующего отображения
-            file_like = io.BytesIO(ib1)
-            im = Image.open(file_like)
+            #file_like = io.BytesIO(ib1)
+            #im = ImageTk.PhotoImage(file=img_name)
+            im = Image.open(img_name)
 
 
             if self.page_range_coord[num_img].orient == 'b':     # если ориентация страницы книжная, то

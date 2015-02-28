@@ -12,6 +12,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from configuration import app_conf as ac
 from share_var import share_list_diap
 from my_status_bar import my_status_bar
+from about_window import about_box
 
 # цель сделать доступными dll библиотеки imagemagic и gs из каталога программы
 # когда данные библиотеки не устаовлены
@@ -28,6 +29,10 @@ ext = file_name.split('.')[-1]
 
 if ext == 'exe':
     environ['MAGICK_CODER_MODULE_PATH'] = approot + '/modules/coders'
+    environ['MAGICK_HOME'] = approot
+    environ['GS_DLL'] = approot
+    environ['GS_LIB'] = approot
+
 
 
 class App():
@@ -88,9 +93,9 @@ class App():
 
     def about(self):
         title = 'О программе'
-        message = "Автор программы: Хозяинов Максим \nВерсия: %s \nДомашняя страничка: http://darsytools.org/divisor/ "
+        message = "Автор программы: Хозяинов Максим \nВерсия: %s \n "
         message = (message % (version,))
-        messagebox.showinfo(title, message)
+        ab = about_box(self.frame, title, message, r'http://darsytools.org/divisor/')
 
     def run_split(self):
         '''
@@ -152,7 +157,7 @@ class App():
     def quit(self, master):
         master.destroy()
 
-version = '0.1.4'
+version = '0.2.1'
 
 
 root = Tk()
