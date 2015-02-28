@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import tempfile
+import os
 from tkinter import *
 from PIL import ImageTk, Image
 import ttk
-#import io
-#from wand.image import Image as Image2 # Image затеняет класс в библиотеке tkinter
 import intervaltree
 from algo2 import veiw_smart_range
 from page_range_coord import page_coords
@@ -32,6 +32,8 @@ class ScrolledCanvas(Canvas):
         self.first_render = True    # Логический флаг первого рендеринга, после события он инвертируется
         self.width = ac.min_height_a4
         self.height = ac.min_height_a4
+        self.image_name = ''
+        self.fp = 0
         self.ico_dict = {}
         self.ico_objs = {}
         self.pdf_big_blob = {}
@@ -52,6 +54,13 @@ class ScrolledCanvas(Canvas):
         self.config(yscrollcommand=self.vbar.set)           # call on canvas move
 
         self.vbar.bind('<ButtonRelease-1>', self.callback)
+
+        self.fp = tempfile.TemporaryFile()
+        self.image_name = self.fp.name
+        self.fp.close()
+        self.fp = open(self.image_name, 'w')
+        self.fp.write('')
+        self.fp.close()
 
     def callback(self, event):
         '''
@@ -78,6 +87,12 @@ class ScrolledCanvas(Canvas):
             tmp_list = [page, page - 1, page + 1]
 
         self.render_pages(tmp_list)
+
+    def __del__(self):
+        '''
+        Подчищаем за собой файловую систему
+        '''
+        os.remove(self.image_name)
 
     def y_coord_to_page(self, y_coord):
         '''
@@ -143,10 +158,12 @@ class ScrolledCanvas(Canvas):
             if self.page_range_coord[num_img].render :
                 continue
 
-            img_name = '56789034.jpeg'
-            convert(filename=self.work_pdf_file, rez=ac.rez, page_number=num_img + 1, cache_img=img_name)
 
-            im = Image.open(img_name)
+
+            #print('temp_file_name=', self.image_name)
+            convert(filename=self.work_pdf_file, rez=ac.rez, page_number=num_img + 1, cache_img=self.image_name)
+
+            im = Image.open(self.image_name)
 
 
             if self.page_range_coord[num_img].orient == 'b':     # если ориентация страницы книжная, то

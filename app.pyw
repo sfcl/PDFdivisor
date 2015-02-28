@@ -24,7 +24,7 @@ except NameError:
 
 old_path = environ['PATH']
 environ['PATH'] = old_path + ';' + approot
-#print(environ['PATH'])
+
 file_name = os.path.abspath(sys.argv[0]).split(os.sep)[-1]
 ext = file_name.split('.')[-1]
 
@@ -77,8 +77,12 @@ class App():
 
         self.context_line = my_status_bar(self.frame)
         self.context_line.pack(side=BOTTOM, fill=X)
-        # отрисовываем пустую канву при запуске программы
+        
+        # создаем временный файл, для рендеринга PDF
+        # послу закрытия программы этот файл удаляется
 
+
+        # отрисовываем пустую канву при запуске программы
         self.flow = ImageGallary(self.frame, approot, self.main_screen_height)
         self.flow.show_void_canvas(pdf_split_range=self.pdf_split_range, text_label=self.context_line)
         self.frame.pack()
@@ -168,7 +172,7 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.1'
+version = '0.2.4'
 
 
 root = Tk()
