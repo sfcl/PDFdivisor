@@ -6,7 +6,7 @@ class app_conf(object):
     Данный класс создан исключительно для хранения настроек
     приложения.
     """
-    title = 'PDF Divisor'
+    title = 'divpdf'
     min_width_a4 = 446
     min_height_a4 = 631
     #min_height_a4 = 650

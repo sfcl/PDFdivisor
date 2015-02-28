@@ -5,10 +5,11 @@ import locale
 import os.path
 from os import environ
 import gettext
-
+import warnings
 from tkinter import *
 from tkinter import filedialog, messagebox
 from flow import ImageGallary
+import PyPDF2
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from configuration import app_conf as ac
 from share_var import share_list_diap
@@ -91,7 +92,32 @@ class App():
         self.pdf_file_name = filedialog.askopenfilename(filetypes=[(_('PDF document'), '*.pdf',)],
                                                         title=_('Select PDF file'),
                                                         initialdir='')
-        self.flow.show_selected_pdf(self.pdf_file_name)
+        # перехватываем возможные проблемы с битыми PDF никами
+        warnings.filterwarnings('ignore')
+        fp = open(self.pdf_file_name, 'rb')
+        try:
+            yap = PdfFileReader(fp)
+            tmp = str(yap.documentInfo)
+        except PyPDF2.utils.PdfReadError as ex:
+            tmp = str(ex)
+            messagebox.showinfo('Ошибка', tmp)
+            # messagebox(_('Error'), _('Not do') + tmp)
+
+        except PyPDF2.utils.PdfStreamError as ex:
+            tmp = str(ex)
+            messagebox.showinfo('Ошибка', tmp)
+            # messagebox(_('Error'), _('Not do') + tmp)
+
+        except PyPDF2.utils.PyPdfError as ex:
+            tmp = str(ex)
+            messagebox.showinfo('Ошибка', tmp)
+            # messagebox(_('Error'), _('Not do') + tmp)
+        else:
+            # данный блок выполняется если исключения не сработали
+            fp.close()
+            self.flow.show_selected_pdf(self.pdf_file_name)
+        finally:
+            fp.close()
 
     def open_folder(self):
         self.output_directory = filedialog.askdirectory(title=_('Select directoy to save PDF files'), parent=self.frame)
@@ -100,6 +126,7 @@ class App():
         title = _('About program')
         message = _('Author program:') + ' ' + _("Hozyainov Maxim") + '\n' + _("Version:") + " %s \n "
         message = (message % (version,))
+        message = message + _('license') + ': GPL v3\n'
         ab = about_box(self.frame, title, message, r'http://darsytools.org/divisor/')
 
     def run_split(self):
@@ -172,11 +199,11 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.4'
+version = '0.2.5'
 
 
 root = Tk()
-root.title(ac.title)
+root.title(ac.title + ' ' + version)
 root.config(bg=ac.bg)
 
 # данные значения подобраны опытным путём для PDF в формате А4.
