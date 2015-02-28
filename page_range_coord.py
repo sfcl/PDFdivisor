@@ -33,5 +33,3 @@ class page_coords(object):
 
     def __getitem__(self, key):
        return self.prepare_pages[key]
-
-# next((x for x in range(10) if x == 7), None)

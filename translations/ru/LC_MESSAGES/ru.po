@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-02-28 13:24+Çàïàäíàÿ Àçèÿ (çèìà)\n"
+"PO-Revision-Date: 2015-02-28 13:58+0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.7.4\n"
+
+#: app.pyw:87
+msgid "PDF document"
+msgstr "PDF документ."
+
+#: app.pyw:88
+msgid "Select PDF file"
+msgstr "Выберите PDF файл."
+
+#: app.pyw:93
+msgid "Select directoy to save PDF files"
+msgstr "Выберите каталог для сохранения PDF файлов."
+
+#: app.pyw:96
+msgid "About program"
+msgstr "О программе"
+
+#: app.pyw:97
+msgid "Author program:"
+msgstr "Автор программы:"
+
+#: app.pyw:97
+msgid "Hozyainov Maxim"
+msgstr "Хозяинов Максим"
+
+#: app.pyw:97
+msgid "Version:"
+msgstr "Версия:"
+
+#: app.pyw:111 app.pyw:117
+msgid "Error"
+msgstr "Ошибка"
+
+#: app.pyw:112
+msgid "Need to select folder to save PDF files"
+msgstr "Выбирите каталог для сохранения PDF файлов."
+
+#: app.pyw:118
+msgid "Need to select PDF file"
+msgstr "Необходимо выбрать PDF файл."

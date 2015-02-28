@@ -11,7 +11,6 @@ def veiw_smart_range(list_buttons, max_num_page):
     max = len(sbuttons)
 
     for i in range(max-1):
-        #print(sbuttons)
         if len(sbuttons) == 0:
             break
 
@@ -23,7 +22,6 @@ def veiw_smart_range(list_buttons, max_num_page):
             sbuttons.sort()
 
         elif sbuttons[0] == sbuttons[1] - 1:
-            #print('##',sbuttons)
             diap.append((sbuttons[0], sbuttons[1],))
             tmp = sbuttons[1]
             del sbuttons[0:2:1]

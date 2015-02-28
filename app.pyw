@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
+import locale
 import os.path
 from os import environ
+import gettext
 
 from tkinter import *
 from tkinter import filedialog, messagebox
@@ -83,17 +84,17 @@ class App():
         self.frame.pack()
 
     def open_file(self):
-        self.pdf_file_name = filedialog.askopenfilename(filetypes=[('PDF документ', '*.pdf',)],
-                                                        title='Выберите PDF файл',
-                                                        initialdir='E:\\work\\darsy\\projects\\prepare_pdf')
+        self.pdf_file_name = filedialog.askopenfilename(filetypes=[(_('PDF document'), '*.pdf',)],
+                                                        title=_('Select PDF file'),
+                                                        initialdir='')
         self.flow.show_selected_pdf(self.pdf_file_name)
 
     def open_folder(self):
-        self.output_directory = filedialog.askdirectory(title='Выберите каталог сохранения файлов', parent=self.frame)
+        self.output_directory = filedialog.askdirectory(title=_('Select directoy to save PDF files'), parent=self.frame)
 
     def about(self):
-        title = 'О программе'
-        message = "Автор программы: Хозяинов Максим \nВерсия: %s \n "
+        title = _('About program')
+        message = _('Author program:') + ' ' + _("Hozyainov Maxim") + '\n' + _("Version:") + " %s \n "
         message = (message % (version,))
         ab = about_box(self.frame, title, message, r'http://darsytools.org/divisor/')
 
@@ -107,14 +108,14 @@ class App():
             return
 
         if self.output_directory == '':
-            title = 'Ошибка'
-            message = 'Необходиомо выбрать каталог для сохранения PDF файлов'
+            title = _('Error')
+            message = _('Need to select folder to save PDF files')
             messagebox.showinfo(title, message)
             return
 
         if self.pdf_file_name == '':
-            title = 'Ошибка'
-            message = 'Необходимо выбрать PDF файл'
+            title = _('Error')
+            message = _('Need to select PDF file')
             messagebox.showinfo(title, message)
             return
 
@@ -137,8 +138,6 @@ class App():
                 with open(cunstruct_pdf_file_name, 'wb') as f:
                     outfile.write(f)
 
-                #print(cunstruct_pdf_file_name)
-
 
             if tmp_list[diap][0] < tmp_list[diap][1]:
                 cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
@@ -156,6 +155,18 @@ class App():
 
     def quit(self, master):
         master.destroy()
+
+
+# производим настройку i18n
+# >>> locale.getdefaultlocale()
+# ('ru_RU', 'cp1251')
+if locale.getdefaultlocale()[0].split('_')[0].upper() == 'RU':
+    ru = gettext.translation('ru', localedir='translations', languages=['ru'])
+    ru.install()
+else:
+    # для всех остальных локализаций будем показывать сообщения на английском
+    en = gettext.translation('en', localedir='translations', languages=['en'])
+    en.install()
 
 version = '0.2.1'
 

@@ -146,16 +146,6 @@ class ScrolledCanvas(Canvas):
             img_name = '56789034.jpeg'
             convert(filename=self.work_pdf_file, rez=ac.rez, page_number=num_img + 1, cache_img=img_name)
 
-
-            #full_file_name = self.work_pdf_file + '[' + str(num_img) + ']'
-            # производим построничную конвертацию Pdf файла в jpeg формат
-            #with Image2(filename=full_file_name, resolution=ac.rez) as img:
-            #    img.format = 'jpeg'
-            #    ib1 = img.make_blob()
-
-            # ресайзим jpeg до нужного (настраиваемого) размера для последующего отображения
-            #file_like = io.BytesIO(ib1)
-            #im = ImageTk.PhotoImage(file=img_name)
             im = Image.open(img_name)
 
 

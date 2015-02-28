@@ -53,8 +53,5 @@ if __name__ == '__main__':
 
     tw.pack()
 
-    tw.push_text("""Hello, World!       cccccccccccccccccccccccccc          dddddddddddddddddddddddddddddddddddddddd ssssssssssssssssssssssssssssssssssssssssssssssssssssssss aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    fffffffffffffffff""")
-
-
+    tw.push_text("Hello, World!")
     root.mainloop()
