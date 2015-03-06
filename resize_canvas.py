@@ -5,7 +5,7 @@ import tempfile
 import os
 from tkinter import *
 from PIL import ImageTk, Image
-import ttk
+from tkinter import ttk
 import intervaltree
 from algo2 import veiw_smart_range
 from page_range_coord import page_coords

@@ -94,6 +94,10 @@ class App():
                                                         initialdir='')
         # перехватываем возможные проблемы с битыми PDF никами
         warnings.filterwarnings('ignore')
+
+        # если ничего не выбрано,то выходим из метода
+        if not self.pdf_file_name:
+            return
         fp = open(self.pdf_file_name, 'rb')
         try:
             yap = PdfFileReader(fp)
