@@ -10,8 +10,6 @@ Dependency
 
 python 3
 
-PIL
-
 tkinter
 
 PyPDF2
