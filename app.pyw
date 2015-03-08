@@ -77,8 +77,8 @@ class App():
         self.b5.image = exitico
         self.b5.pack(padx=2, pady=2, side=LEFT)
 
-        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=150, mode='determinate')
-        self.pgBar.step(0)
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='determinate')
+
         self.pgBar.pack(padx=2, pady=2, side=RIGHT)
 
         self.context_line = my_status_bar(self.frame)
@@ -132,6 +132,46 @@ class App():
     def open_folder(self):
         self.output_directory = filedialog.askdirectory(title=_('Select directoy to save PDF files'), parent=self.frame)
 
+    def split_thread(self):
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='indeterminate')
+        self.pgBar.start()
+        base_file_name = os.path.basename(self.pdf_file_name)[:-4]
+        tmp_list = self.pdf_split_range.get_all()
+        # выполняем основную работу по разбивке PDF документа
+        len_list = len(tmp_list)
+        for diap in range(len_list):
+
+            if tmp_list[diap][0] == tmp_list[diap][1]:
+                cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
+                    '-' + str(tmp_list[diap][0]) + '.pdf'
+                infile = PdfFileReader(open(self.pdf_file_name, 'rb'))
+                p = infile.getPage(tmp_list[diap][0]-1)
+                outfile = PdfFileWriter()
+                outfile.addPage(p)
+                with open(cunstruct_pdf_file_name, 'wb') as f:
+                    outfile.write(f)
+
+
+            if tmp_list[diap][0] < tmp_list[diap][1]:
+                cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
+                    '-' + str(tmp_list[diap][1]) + '.pdf'
+                infile = PdfFileReader(open(self.pdf_file_name, 'rb'))
+                range_length = tmp_list[diap][1] - tmp_list[diap][0] + 1
+                outfile = PdfFileWriter()
+                for pgs in range(range_length):
+                    p = infile.getPage(tmp_list[diap][0] + pgs - 1)
+                    outfile.addPage(p)
+
+                    # сохраняем диапазон в отдельном файле
+                with open(cunstruct_pdf_file_name, 'wb') as f:
+                    outfile.write(f)
+
+        self.pgBar.stop()
+        title = _('Process end')
+        message = _('Process end successfully')
+        messagebox.showinfo(title, message)
+
+
     def about(self):
         title = _('About program')
         message = _('Author program:') + ' ' + _("Hozyainov Maxim") + '\n' + _("Version:") + " %s \n "
@@ -163,49 +203,9 @@ class App():
         if len(self.pdf_split_range.get_all()) == 0 or len(self.pdf_split_range.get_all()) == 1:
             return
 
-        base_file_name = os.path.basename(self.pdf_file_name).split('.')[-2]
-        tmp_list = self.pdf_split_range.get_all()
+        # запуск потока
+        threading.Thread(target=self.split_thread, args=()).start()
 
-        #self.pgBar.start()
-        self.pgBar['value'] = 0
-        self.pgBar['maximum'] = 100
-        # выполняем основную работу по разбивке PDF документа
-        len_list = len(tmp_list)
-        for diap in range(len_list):
-
-            self.pgBar['value'] = int(diap * 100 / len_list)
-
-            if tmp_list[diap][0] == tmp_list[diap][1]:
-                cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
-                    '-' + str(tmp_list[diap][0]) + '.pdf'
-                infile = PdfFileReader(open(self.pdf_file_name, 'rb'))
-                p = infile.getPage(tmp_list[diap][0]-1)
-                outfile = PdfFileWriter()
-                outfile.addPage(p)
-                with open(cunstruct_pdf_file_name, 'wb') as f:
-                    outfile.write(f)
-
-
-            if tmp_list[diap][0] < tmp_list[diap][1]:
-                cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
-                    '-' + str(tmp_list[diap][1]) + '.pdf'
-                infile = PdfFileReader(open(self.pdf_file_name, 'rb'))
-                range_length = tmp_list[diap][1] - tmp_list[diap][0] + 1
-                outfile = PdfFileWriter()
-                for pgs in range(range_length):
-                    p = infile.getPage(tmp_list[diap][0] + pgs - 1)
-                    outfile.addPage(p)
-
-                    # сохраняем диапазон в отдельном файле
-                with open(cunstruct_pdf_file_name, 'wb') as f:
-                    outfile.write(f)
-
-        self.pgBar['value'] = 100
-        #self.pgBar.stop()
-
-        title = _('Process end')
-        message = _('Process end successfully')
-        messagebox.showinfo(title, message)
 
     def quit(self, master):
         master.destroy()

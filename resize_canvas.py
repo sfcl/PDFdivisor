@@ -53,14 +53,21 @@ class ScrolledCanvas(Canvas):
         self.vbar = ttk.Scrollbar(container)
         self.vbar.pack(side=RIGHT,  fill=Y)                 # pack canvas after bars
         self.pack(side=TOP, fill=BOTH, expand=YES)
-        self.vbar.config(command=self.yview)                # call on scroll move
+        #self.vbar.config(command=self.yview)                # call on scroll move
+        self.vbar.config(command=self.click_arrow)                # call on scroll move
         self.config(yscrollcommand=self.vbar.set)           # call on canvas move
         self.vbar.bind('<ButtonRelease-1>', self.callback)
+
+    def click_arrow(self, *argv):
+        #print(argv)
+        #self.yview(argv[0], argv[1], argv[2])
+        self.yview(*argv)
+        self.callback()
 
     def render_one_page(self, num_img):
         pass
 
-    def callback(self, event):
+    def callback(self, event=None):
         '''
         Метод-обработчик, срабатывающий после отпускания левой клавиши мыши
         '''
@@ -75,6 +82,7 @@ class ScrolledCanvas(Canvas):
             page = sorted(set1)[0].data
         except IndexError:
             return
+
         #print('page = ', page,' ', self.vbar.get()[1])
 
         if page == 0:              # скролл находится на первой странице
@@ -85,6 +93,7 @@ class ScrolledCanvas(Canvas):
             #tmp_list = [page - 1, page, page + 1]
             tmp_list = [page, page - 1, page + 1]
 
+        print('list_for_render=',tmp_list)
         self.render_pages(tmp_list)
 
     def y_coord_to_page(self, y_coord):
@@ -144,15 +153,26 @@ class ScrolledCanvas(Canvas):
             # инвертируем флаг self.first_render, и больше в эту веточку не заходим
             self.first_render = False
 
+
+        # через жопу очищаем содержимое очереди
+        while not self.queue.empty():
+            try:
+                self.queue.get(False)
+            except Empty:
+                continue
+            self.queue.task_done()
+
         for num_img in list_pages:
             # повторно не рендерим то, что уже отрендерено
             if self.page_range_coord[num_img].render:
+                print('page_num=',num_img, ' render!')
                 continue
-
+            else:
+                self.queue.put(num_img)
             #t1 = threading.Thread(target=self.render_one_page, args=(num_img,))
             #t1.start()
             #print('page= ', num_img)
-            self.queue.put(num_img)
+
 
         self.queue.put(None)
         thread_render_one_page(

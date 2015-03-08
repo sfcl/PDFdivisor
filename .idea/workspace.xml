@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9136bd4-a1ee-4ac7-afa2-959829895ca3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.pyw" afterPath="$PROJECT_DIR$/app.pyw" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flow.py" afterPath="$PROJECT_DIR$/flow.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page_range_coord.py" afterPath="$PROJECT_DIR$/page_range_coord.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resize_canvas.py" afterPath="$PROJECT_DIR$/resize_canvas.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thread_class.py" afterPath="$PROJECT_DIR$/thread_class.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="project.iws" />
@@ -17,7 +20,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/project$app_pyw.coverage" NAME="app.pyw Coverage Results" MODIFIED="1425811881203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$app_pyw.coverage" NAME="app.pyw Coverage Results" MODIFIED="1425843628531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -34,25 +37,7 @@
       <file leaf-file-name="app.pyw" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.pyw">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="28" selection-start="8513" selection-end="8513" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="4097">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="383" selection-end="383" vertical-scroll-proportion="0.77754676" vertical-offset="0" max-vertical-offset="481">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="561">
+            <state line="32" column="0" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="4352">
               <folding />
             </state>
           </provider>
@@ -61,16 +46,16 @@
       <file leaf-file-name="flow.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="13" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2057">
+            <state line="30" column="35" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2057">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resize_canvas.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="resize_canvas.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resize_canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1810" max-vertical-offset="3825">
+            <state line="170" column="32" selection-start="6857" selection-end="6857" vertical-scroll-proportion="0.81395346" vertical-offset="2505" max-vertical-offset="4165">
               <folding>
                 <element signature="e#48#63#0" expanded="true" />
               </folding>
@@ -81,10 +66,8 @@
       <file leaf-file-name="thread_class.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thread_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="23" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1700">
-              <folding>
-                <element signature="e#48#57#0" expanded="true" />
-              </folding>
+            <state line="34" column="39" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1615">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,7 +75,7 @@
       <file leaf-file-name="page_range_coord.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/page_range_coord.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="38" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="697">
+            <state line="31" column="53" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="296" max-vertical-offset="850">
               <folding />
             </state>
           </provider>
@@ -101,7 +84,7 @@
       <file leaf-file-name="requarements.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requarements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="23" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+            <state line="2" column="0" selection-start="23" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="238">
               <folding />
             </state>
           </provider>
@@ -142,12 +125,13 @@
         <option value="$PROJECT_DIR$/translations/en/LC_MESSAGES/en.pot" />
         <option value="$PROJECT_DIR$/ghostscript/_gsprint.py" />
         <option value="$PROJECT_DIR$/requarements.txt" />
-        <option value="$PROJECT_DIR$/flow.py" />
-        <option value="$PROJECT_DIR$/resize_canvas.py" />
-        <option value="$PROJECT_DIR$/thread_class.py" />
-        <option value="$PROJECT_DIR$/app.pyw" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/app.pyw" />
+        <option value="$PROJECT_DIR$/flow.py" />
+        <option value="$PROJECT_DIR$/thread_class.py" />
+        <option value="$PROJECT_DIR$/page_range_coord.py" />
+        <option value="$PROJECT_DIR$/resize_canvas.py" />
       </list>
     </option>
   </component>
@@ -155,10 +139,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="26" />
-    <option name="y" value="-12" />
-    <option name="width" value="1259" />
-    <option name="height" value="774" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1288" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -324,6 +308,23 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="project" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="host" value="127.0.0.1" />
+      <option name="browserUrl" value="" />
+      <option name="additionalOptions" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -417,6 +418,23 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d9136bd4-a1ee-4ac7-afa2-959829895ca3" name="Default" comment="" />
@@ -426,7 +444,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="26" y="-12" width="1259" height="774" extended-state="0" />
+    <frame x="-4" y="-4" width="1288" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -434,11 +452,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26633582" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2746365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19756839" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19486405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -492,6 +510,132 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.pyw">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="4352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="23" selection-start="4361" selection-end="4377" vertical-scroll-proportion="0.0" vertical-offset="1543" max-vertical-offset="2159">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resize_canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="42" selection-start="708" selection-end="709" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="3978">
+          <folding>
+            <element signature="e#48#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thread_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="28" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page_range_coord.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="38" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requarements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="23" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="238">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="4" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/progressbar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="31" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="221" column="28" selection-start="8513" selection-end="8513" vertical-scroll-proportion="0.0" vertical-offset="3757" max-vertical-offset="4352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="13" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="2159">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resize_canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1810" max-vertical-offset="3825">
+          <folding>
+            <element signature="e#48#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thread_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="23" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page_range_coord.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="38" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requarements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="23" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="238">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="4" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/progressbar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="31" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.pyw">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="126" column="12" selection-start="4726" selection-end="4726" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4352">
           <folding />
         </state>
@@ -516,9 +660,7 @@
     <entry file="file://$PROJECT_DIR$/thread_class.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="35" selection-start="1152" selection-end="1152" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1479">
-          <folding>
-            <element signature="e#48#57#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -636,56 +778,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="383" selection-end="383" vertical-scroll-proportion="0.6121113" vertical-offset="0" max-vertical-offset="611" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="606" max-vertical-offset="4352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/page_range_coord.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="38" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="697">
+        <state line="31" column="53" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="296" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="13" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2057">
+        <state line="30" column="35" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thread_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="39" selection-start="913" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1615">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resize_canvas.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1810" max-vertical-offset="3825">
+        <state line="170" column="32" selection-start="6857" selection-end="6857" vertical-scroll-proportion="0.81395346" vertical-offset="2505" max-vertical-offset="4165">
           <folding>
             <element signature="e#48#63#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thread_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1700">
-          <folding>
-            <element signature="e#48#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.pyw">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="28" selection-start="8513" selection-end="8513" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="4097">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="383" selection-end="383" vertical-scroll-proportion="0.77754676" vertical-offset="0" max-vertical-offset="481">
-          <folding />
         </state>
       </provider>
     </entry>

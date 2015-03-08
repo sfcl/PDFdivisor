@@ -33,3 +33,13 @@ class page_coords(object):
 
     def __getitem__(self, key):
        return self.prepare_pages[key]
+
+    def __str__(self):
+        str_obj = ''
+        for elem in self.prepare_pages:
+            if self.prepare_pages[elem].render:
+                str_obj += str(elem) + ' '
+            #str_obj += 'index=' + str(elem) + ' render=' + str(self.prepare_pages[elem].render) + '\n'
+            #print('index=', elem,' render=' ,self.prepare_pages[elem].render)
+        str_obj += '\n'
+        return str_obj

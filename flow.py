@@ -50,7 +50,7 @@ class ImageGallary(object):
         self.full_canvas_height = self.calculate_height
         #self.c.koef = self.full_canvas_height / view_port_height
         self.c.config(scrollregion=(0, 0, self.width+self.ico_size, self.full_canvas_height))
-        self.c.set_select_pages = set() # очищаем мнодество выбранных диапазонов
+        self.c.set_select_pages = set() # очищаем множество выбранных диапазонов
 
         if self.c.page_counts <= ac.magic_constant:
             # рендеринг всех страниц, какие есть в документе

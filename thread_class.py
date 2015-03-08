@@ -31,11 +31,12 @@ class thread_render_one_page(threading.Thread):
         self.num_img = 0
 
     def run(self):
-        while 1:
+        while not self.queue_pages.empty():
+            print(self.page_range_coord)
             self.num_img = self.queue_pages.get()
             if self.num_img is None:
                 break   # достигнут конец очереди
-            #print('in thread', self.num_img)
+            print('in thread render page', self.num_img)
             self.fp = tempfile.TemporaryFile()
             self.f_name = self.fp.name
             self.fp.close()
