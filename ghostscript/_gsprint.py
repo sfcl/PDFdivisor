@@ -57,8 +57,8 @@ def new_instance(): # display_callback=None):
     display_callback=None
     instance = gs_main_instance()
     rc = libgs.gsapi_new_instance(pointer(instance), display_callback)
-    if rc != 0:
-        raise GhostscriptError(rc)
+#    if rc != 0:
+#        raise GhostscriptError(rc)
     return instance
 
 def delete_instance(instance):
@@ -160,8 +160,9 @@ def init_with_args(instance, argv):
     c_argv = ArgArray(*argv) 
     rc = libgs.gsapi_init_with_args(instance, len(argv), c_argv)
 
-    if rc not in (0, e_Quit, e_Info):
-        raise GhostscriptError(rc)
+    #if rc not in (0, e_Quit, e_Info):
+    #    raise GhostscriptError(rc)
+
     return rc
 
 def exit(instance):
@@ -172,8 +173,8 @@ def exit(instance):
     called, and just before delete_instance()
     """
     rc = libgs.gsapi_exit(instance)
-    if rc != 0:
-        raise GhostscriptError(rc)
+    #if rc != 0:
+    #    raise GhostscriptError(rc)
     return rc
 
 

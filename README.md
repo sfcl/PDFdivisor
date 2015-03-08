@@ -1,12 +1,24 @@
-PDFdivisor - простая программа с графическим интерфейсом, предназначенная для разбиения PDF на отдельные страницы или
-диапазоны страниц.
+divpdf - a simple program with a graphical interface designed for cutting into individual PDF pages or
+page ranges. The user does not need to enter a range in a list. The chip in this program
+that the user mouse click on the "Scissors" selects a page belonging to the desired range.
 
-# PDFdivisor
+DIVPDF
+======
 
-Зависимости:
+Dependency
+-----------
+
+python 3
+
+PIL
+
 tkinter
-ttk
-Pillow
-Wand
+
 PyPDF2
+
+Pillow
+
+cx_freeze
+
+intervaltree
 

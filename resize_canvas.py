@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import tempfile
+import threading
+from threading import current_thread
 import os
+import os.path
+import queue
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter import ttk
@@ -10,7 +14,7 @@ import intervaltree
 from algo2 import veiw_smart_range
 from page_range_coord import page_coords
 from configuration import app_conf as ac
-from pdf2img import convert
+from thread_class import thread_render_one_page
 
 class ScrolledCanvas(Canvas):
     '''
@@ -19,6 +23,7 @@ class ScrolledCanvas(Canvas):
     def __init__(self, container, approot='', **kwargs):
         Canvas.__init__(self, container)
         self.update_idletasks()
+        self.queue = queue.Queue()
         self.config(borderwidth=0)
         self.config(**kwargs)
         self.config(highlightthickness=0,) # убираем бордер в 2 пикселя вокруг канвы
@@ -46,21 +51,14 @@ class ScrolledCanvas(Canvas):
         self.normal_ico_button = ImageTk.PhotoImage(file=approot + '\\ico\\normal.gif')
         # --------
         self.vbar = ttk.Scrollbar(container)
-
         self.vbar.pack(side=RIGHT,  fill=Y)                 # pack canvas after bars
         self.pack(side=TOP, fill=BOTH, expand=YES)
-
         self.vbar.config(command=self.yview)                # call on scroll move
         self.config(yscrollcommand=self.vbar.set)           # call on canvas move
-
         self.vbar.bind('<ButtonRelease-1>', self.callback)
 
-        self.fp = tempfile.TemporaryFile()
-        self.image_name = self.fp.name
-        self.fp.close()
-        self.fp = open(self.image_name, 'w')
-        self.fp.write('')
-        self.fp.close()
+    def render_one_page(self, num_img):
+        pass
 
     def callback(self, event):
         '''
@@ -79,20 +77,15 @@ class ScrolledCanvas(Canvas):
             return
         #print('page = ', page,' ', self.vbar.get()[1])
 
-        if (page - 1) < 0:              # скролл находится на первой странице
-            tmp_list = [page, page + 1]
+        if page == 0:              # скролл находится на первой странице
+            tmp_list = [page, ]
         elif page == self.page_counts-1:  # скролл на последней странице
-            tmp_list = [page, page - 1, ]
+            tmp_list = [page, page - 1]
         else:                           # во всех остальных случаях
+            #tmp_list = [page - 1, page, page + 1]
             tmp_list = [page, page - 1, page + 1]
 
         self.render_pages(tmp_list)
-
-    def __del__(self):
-        '''
-        Подчищаем за собой файловую систему
-        '''
-        os.remove(self.image_name)
 
     def y_coord_to_page(self, y_coord):
         '''
@@ -151,57 +144,24 @@ class ScrolledCanvas(Canvas):
             # инвертируем флаг self.first_render, и больше в эту веточку не заходим
             self.first_render = False
 
-
-
         for num_img in list_pages:
             # повторно не рендерим то, что уже отрендерено
-            if self.page_range_coord[num_img].render :
+            if self.page_range_coord[num_img].render:
                 continue
 
+            #t1 = threading.Thread(target=self.render_one_page, args=(num_img,))
+            #t1.start()
+            #print('page= ', num_img)
+            self.queue.put(num_img)
 
-
-            #print('temp_file_name=', self.image_name)
-            convert(filename=self.work_pdf_file, rez=ac.rez, page_number=num_img + 1, cache_img=self.image_name)
-
-            im = Image.open(self.image_name)
-
-
-            if self.page_range_coord[num_img].orient == 'b':     # если ориентация страницы книжная, то
-                im.thumbnail((ac.min_width_a4, ac.min_height_a4,), Image.ANTIALIAS)
-            elif self.page_range_coord[num_img].orient == 'a':   # если ориентация страницы альюомная, то
-                im.thumbnail((ac.min_height_a4, ac.min_width_a4, ), Image.ANTIALIAS)
-            else:                                       # во всех остальных случаях
-                im.thumbnail((ac.min_height_a4, ac.min_height_a4, ), Image.ANTIALIAS)
-
-
-            # для этого конвертируем blob в ImageTk.PhotoImage
-            # сохраняем объекты ImageTk.PhotoImage ресайзенных картинок в хэше
-            self.pdf_big_blob[num_img] = ImageTk.PhotoImage(im)
-            im.close()
-
-            # выполняем отрисовку картинок на master_canvas'е
-
-            if self.page_range_coord[num_img].orient == 'b':
-                x_offset = int(ac.min_width_a4 / 2)
-            elif self.page_range_coord[num_img].orient == 'a':
-                x_offset = int(ac.min_height_a4 / 2)
-            else:
-                x_offset = int(ac.min_height_a4 / 2)
-
-            if self.page_range_coord[num_img].orient == 'b':
-                y_offset = int(ac.min_height_a4 / 2)
-            elif self.page_range_coord[num_img].orient == 'a':
-                y_offset = int(ac.min_width_a4 / 2)
-            else:
-                y_offset = int(ac.min_height_a4 / 2)
-
-            # отрисовываем картинку на канве
-            self.create_image(x_offset, y_offset + self.page_range_coord[num_img].y_offset,
-                              image=self.pdf_big_blob[num_img])
-            # устанавливаем флажок, что данная страничка отрендеренна
-            self.page_range_coord[num_img].render = True
-            self.update_idletasks()
-
+        self.queue.put(None)
+        thread_render_one_page(
+            queue_pages=self.queue,
+            work_pdf_file=self.work_pdf_file,
+            page_range_coord=self.page_range_coord,
+            canvas=self,
+            pdf_big_blob=self.pdf_big_blob,
+        ).start()
 
     def ico_click(self, event):
         canvas = event.widget

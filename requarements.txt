@@ -1,5 +1,6 @@
 # зависимости проекта
 
+PIL
 tkinter
 PyPDF2
 Pillow

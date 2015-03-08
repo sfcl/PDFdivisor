@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import locale
+import threading
 import os.path
 from os import environ
 import gettext
 import warnings
 from tkinter import *
 from tkinter import filedialog, messagebox
+from tkinter import ttk
 from flow import ImageGallary
 import PyPDF2
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -75,6 +77,9 @@ class App():
         self.b5.image = exitico
         self.b5.pack(padx=2, pady=2, side=LEFT)
 
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=150, mode='determinate')
+        self.pgBar.step(0)
+        self.pgBar.pack(padx=2, pady=2, side=RIGHT)
 
         self.context_line = my_status_bar(self.frame)
         self.context_line.pack(side=BOTTOM, fill=X)
@@ -119,7 +124,8 @@ class App():
         else:
             # данный блок выполняется если исключения не сработали
             fp.close()
-            self.flow.show_selected_pdf(self.pdf_file_name)
+            threading.Thread(target=self.flow.show_selected_pdf, args=(self.pdf_file_name, )).start()
+            #self.flow.show_selected_pdf(self.pdf_file_name)
         finally:
             fp.close()
 
@@ -160,8 +166,14 @@ class App():
         base_file_name = os.path.basename(self.pdf_file_name).split('.')[-2]
         tmp_list = self.pdf_split_range.get_all()
 
+        #self.pgBar.start()
+        self.pgBar['value'] = 0
+        self.pgBar['maximum'] = 100
         # выполняем основную работу по разбивке PDF документа
-        for diap in range(len(tmp_list)):
+        len_list = len(tmp_list)
+        for diap in range(len_list):
+
+            self.pgBar['value'] = int(diap * 100 / len_list)
 
             if tmp_list[diap][0] == tmp_list[diap][1]:
                 cunstruct_pdf_file_name = self.output_directory + '/' + base_file_name + '_' + str(tmp_list[diap][0])+ \
@@ -188,6 +200,13 @@ class App():
                 with open(cunstruct_pdf_file_name, 'wb') as f:
                     outfile.write(f)
 
+        self.pgBar['value'] = 100
+        #self.pgBar.stop()
+
+        title = _('Process end')
+        message = _('Process end successfully')
+        messagebox.showinfo(title, message)
+
     def quit(self, master):
         master.destroy()
 
@@ -203,7 +222,7 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.5'
+version = '0.2.6'
 
 
 root = Tk()

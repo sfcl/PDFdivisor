@@ -54,6 +54,7 @@ class ImageGallary(object):
 
         if self.c.page_counts <= ac.magic_constant:
             # рендеринг всех страниц, какие есть в документе
+
             self.c.render_pages([le for le in range(self.c.page_counts)])
         else:
             # рендерим только первые ac.magic_constant страниц, остальные бужем рендерить по ходу скроллирования
