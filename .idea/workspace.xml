@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9136bd4-a1ee-4ac7-afa2-959829895ca3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/en/LC_MESSAGES/en.mo" afterPath="$PROJECT_DIR$/translations/en/LC_MESSAGES/en.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/ru/LC_MESSAGES/ru.mo" afterPath="$PROJECT_DIR$/translations/ru/LC_MESSAGES/ru.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostscript/_gsprint.py" afterPath="$PROJECT_DIR$/ghostscript/_gsprint.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.pyw" afterPath="$PROJECT_DIR$/app.pyw" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/en/LC_MESSAGES/en.pot" afterPath="$PROJECT_DIR$/translations/en/LC_MESSAGES/en.pot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flow.py" afterPath="$PROJECT_DIR$/flow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/project.iml" afterPath="$PROJECT_DIR$/.idea/project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requarements.txt" afterPath="$PROJECT_DIR$/requarements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resize_canvas.py" afterPath="$PROJECT_DIR$/resize_canvas.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/ru/LC_MESSAGES/ru.po" afterPath="$PROJECT_DIR$/translations/ru/LC_MESSAGES/ru.po" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thread_class.py" afterPath="$PROJECT_DIR$/thread_class.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="project.iws" />
@@ -32,7 +18,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/project$app_pyw.coverage" NAME="app.pyw Coverage Results" MODIFIED="1425808659578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$app_pyw.coverage" NAME="app.pyw Coverage Results" MODIFIED="1425811881203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -46,19 +32,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.pyw" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.pyw" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.pyw">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="32" selection-start="8517" selection-end="8517" vertical-scroll-proportion="0.0" vertical-offset="3183" max-vertical-offset="4097">
+            <state line="224" column="16" selection-start="8598" selection-end="8598" vertical-scroll-proportion="0.7905983" vertical-offset="3183" max-vertical-offset="4097">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.5301455" vertical-offset="0" max-vertical-offset="510">
+            <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="5" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
               <folding />
             </state>
           </provider>
@@ -76,7 +71,7 @@
       <file leaf-file-name="resize_canvas.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resize_canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="35" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="3825">
+            <state line="132" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1810" max-vertical-offset="3825">
               <folding>
                 <element signature="e#48#63#0" expanded="true" />
               </folding>
@@ -87,7 +82,7 @@
       <file leaf-file-name="thread_class.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thread_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="11" selection-start="2858" selection-end="2858" vertical-scroll-proportion="-9.807693" vertical-offset="884" max-vertical-offset="1598">
+            <state line="27" column="23" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1700">
               <folding>
                 <element signature="e#48#57#0" expanded="true" />
               </folding>
@@ -149,10 +144,11 @@
         <option value="$PROJECT_DIR$/ghostscript/_gsprint.py" />
         <option value="$PROJECT_DIR$/requarements.txt" />
         <option value="$PROJECT_DIR$/flow.py" />
-        <option value="$PROJECT_DIR$/thread_class.py" />
         <option value="$PROJECT_DIR$/resize_canvas.py" />
-        <option value="$PROJECT_DIR$/app.pyw" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/thread_class.py" />
+        <option value="$PROJECT_DIR$/app.pyw" />
       </list>
     </option>
   </component>
@@ -600,11 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/share_var.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="35" selection-start="323" selection-end="332" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="374" />
@@ -639,38 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="13" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2057">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thread_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="11" selection-start="2858" selection-end="2858" vertical-scroll-proportion="-9.807693" vertical-offset="884" max-vertical-offset="1598">
-          <folding>
-            <element signature="e#48#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resize_canvas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="35" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="3825">
-          <folding>
-            <element signature="e#48#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.pyw">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="32" selection-start="8517" selection-end="8517" vertical-scroll-proportion="0.0" vertical-offset="3183" max-vertical-offset="4097">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requarements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="23" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
@@ -687,7 +646,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.5301455" vertical-offset="0" max-vertical-offset="510">
+        <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="5" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="13" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resize_canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1810" max-vertical-offset="3825">
+          <folding>
+            <element signature="e#48#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thread_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="23" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1700">
+          <folding>
+            <element signature="e#48#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="224" column="16" selection-start="8598" selection-end="8598" vertical-scroll-proportion="0.7905983" vertical-offset="3183" max-vertical-offset="4097">
           <folding />
         </state>
       </provider>

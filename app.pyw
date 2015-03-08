@@ -222,7 +222,7 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.6'
+version = '0.2.7'
 
 
 root = Tk()

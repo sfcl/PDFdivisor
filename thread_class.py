@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+
 import threading
+import tempfile
 from PIL import Image, ImageTk
 from pdf2img import convert
 from configuration import app_conf as ac
@@ -34,9 +36,10 @@ class thread_render_one_page(threading.Thread):
             if self.num_img is None:
                 break   # достигнут конец очереди
             #print('in thread', self.num_img)
-            self.f_name = os.getcwd() + '\\cache\\' + str(self.num_img) + '.dat'
-            #self.fp = open(self.f_name, 'w')
-            #self.fp.close()
+            self.fp = tempfile.TemporaryFile()
+            self.f_name = self.fp.name
+            self.fp.close()
+
             self.worker = convert(filename=self.work_pdf_file,
                                   rez=ac.rez,
                                   page_number=self.num_img + 1,
@@ -80,6 +83,9 @@ class thread_render_one_page(threading.Thread):
             # устанавливаем флажок, что данная страничка отрендеренна
             self.page_range_coord[self.num_img].render = True
             self.canvas.update_idletasks()
+
+            #очищаем за собой больше ненужные файлы
+            os.remove(self.f_name)
 
     def __del__(self):
         '''
