@@ -20,3 +20,5 @@ cx_freeze
 
 intervaltree
 
+The program is currently only Win32
+
