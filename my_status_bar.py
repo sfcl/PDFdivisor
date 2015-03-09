@@ -7,10 +7,10 @@ from configuration import app_conf as ac
 class my_status_bar(object):
     
     def __init__(self, master,):
-        self.frame = Frame(master, bd=2, relief=FLAT)
+        self.frame = Frame(master, relief=FLAT)
         self.frame.grid_rowconfigure(0, weight=1)
         self.frame.grid_columnconfigure(0, weight=1)
-        self.frame.config(bg=ac.bg)
+        self.frame.config(bd=0, bg=ac.bg)
 
         self.yscrollbar = Scrollbar(self.frame)
         self.yscrollbar.grid(row=0, column=1, sticky=N+S)

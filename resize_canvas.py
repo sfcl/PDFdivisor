@@ -91,7 +91,7 @@ class ScrolledCanvas(Canvas):
             tmp_list = [page, page - 1]
         else:                           # во всех остальных случаях
             #tmp_list = [page - 1, page, page + 1]
-            tmp_list = [page, page - 1, page + 1]
+            tmp_list = [page - 1, page + 1 , page]
 
         print('list_for_render=',tmp_list)
         self.render_pages(tmp_list)
