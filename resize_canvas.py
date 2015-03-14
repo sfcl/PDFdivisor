@@ -148,7 +148,6 @@ class ScrolledCanvas(Canvas):
 
             # связвываем с картинкой код обработчика
             self.tag_bind(self.ico_objs[np]['img'], '<ButtonPress-1>', self.ico_click)
-
             self.page_range_coord[np].render = False
 
 

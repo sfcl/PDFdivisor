@@ -77,9 +77,8 @@ class App():
         self.b5.image = exitico
         self.b5.pack(padx=2, pady=2, side=LEFT)
 
-        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='determinate')
-
-        self.pgBar.pack(padx=2, pady=2, side=RIGHT)
+        # self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='determinate')
+        # self.pgBar.pack(padx=2, pady=2, side=RIGHT)
 
         self.context_line = my_status_bar(self.frame)
         self.context_line.pack(side=BOTTOM, fill=X)
@@ -94,6 +93,7 @@ class App():
         self.frame.pack()
 
     def open_file(self):
+
         self.pdf_file_name = filedialog.askopenfilename(filetypes=[(_('PDF document'), '*.pdf',)],
                                                         title=_('Select PDF file'),
                                                         initialdir='')
@@ -223,7 +223,7 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.7'
+version = '0.2.8'
 
 
 root = Tk()

@@ -40,8 +40,15 @@ class ImageGallary(object):
 
     def show_selected_pdf(self, name_pdf_file):
         self.c.work_pdf_file = name_pdf_file
+        # освобождаем память от предыдущих файлов
+        self.c.ico_objs = {}
+        self.c.ico_dict = {}
+        self.c.pdf_big_blob = {}
         self.c.status_bar_text.push_text('')  # сбрасываем диапазоны выбранных страниц при новом открытии документа
         self.c.delete(ALL)  # очищаем от предыдущего контента
+        # устанавливаем курсор скролла на самый верх
+        self.c.yview_moveto(0)
+        #self.c.vbar.set(0.0, self.c.canvasy(0.0))
         self.c.config(width=ac.min_height_a4 + self.ico_size,)
         self.c.view_port_height = self.parent_height - ac.status_bar_height - ac.title_bar_height - 2*ac.ico_size
         self.c.config(height=self.c.view_port_height,)
