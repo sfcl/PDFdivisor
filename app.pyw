@@ -178,7 +178,7 @@ class App():
         message = _('Author program:') + ' ' + _("Hozyainov Maxim") + '\n' + _("Version:") + " %s \n "
         message = (message % (version,))
         message = message + _('license') + ': GPL v3\n'
-        ab = about_box(self.frame, title, message, r'http://darsytools.org/divisor/')
+        ab = about_box(self.frame, title, message, r'http://dartools.org/divpdf/')
 
     def run_split(self):
         '''
