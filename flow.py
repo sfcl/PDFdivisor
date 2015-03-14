@@ -39,7 +39,6 @@ class ImageGallary(object):
         self.c.status_bar_text = text_label
 
     def show_selected_pdf(self, name_pdf_file):
-        self.c.first_render = True
         self.c.work_pdf_file = name_pdf_file
         self.c.status_bar_text.push_text('')  # сбрасываем диапазоны выбранных страниц при новом открытии документа
         self.c.delete(ALL)  # очищаем от предыдущего контента

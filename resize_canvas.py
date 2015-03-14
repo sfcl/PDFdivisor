@@ -106,52 +106,50 @@ class ScrolledCanvas(Canvas):
         '''
         Производит рендеринг перечисленных в списке list_pages страниц
         '''
-        if self.first_render:
-            # производим отрисовку всех кнопок "ножниц" и номеров страниц на канве
-            # данный блок выполняется только один раз
-            for np in range(self.page_counts):
-                orient_page = self.page_range_coord[np].orient
-                y_offset = self.page_range_coord[np].y_offset
-                if orient_page == 'b':
-                    y_offset = y_offset + ac.min_height_a4
-                elif orient_page == 'a':
-                    y_offset = y_offset + ac.min_width_a4
-                else:
-                    y_offset = y_offset + ac.min_height_a4
 
-                # в text_label пишем номер странички
-                # рисуем номер странички
-                if self.page_range_coord[np].orient == 'b':
-                    x_coord_text = int(ac.min_width_a4 / 2)
-                elif self.page_range_coord[np].orient == 'a':
-                    x_coord_text = int(ac.min_height_a4 / 2)
-                else:
-                    x_coord_text = int(ac.min_height_a4 / 2)
+        # производим отрисовку всех кнопок "ножниц" и номеров страниц на канве
+        # данный блок выполняется только один раз
+        for np in list_pages:
+            orient_page = self.page_range_coord[np].orient
+            y_offset = self.page_range_coord[np].y_offset
+            if orient_page == 'b':
+                y_offset = y_offset + ac.min_height_a4
+            elif orient_page == 'a':
+                y_offset = y_offset + ac.min_width_a4
+            else:
+                y_offset = y_offset + ac.min_height_a4
 
-                y_coord_text = y_offset+int(ac.text_label/2)
-                self.create_text(x_coord_text, y_coord_text, text=int(np + 1), fill='black')
-                # рисуем иконку с зелёными ножницами
-                # пропускаем отрисовку последней кнопки ножниц
-                if (np + 1) == self.page_counts:
-                    break
-                # расчитываем координаты x и y на холсте для иконки ножниц
-                x_coord_ico = ac.min_height_a4
-                y_coord_ico = y_offset + ac.text_label
+            # в text_label пишем номер странички
+            # рисуем номер странички
+            if self.page_range_coord[np].orient == 'b':
+                x_coord_text = int(ac.min_width_a4 / 2)
+            elif self.page_range_coord[np].orient == 'a':
+                x_coord_text = int(ac.min_height_a4 / 2)
+            else:
+                x_coord_text = int(ac.min_height_a4 / 2)
 
-                # помещаем иконку зеленых ножниц на канву
-                self.ico_dict[np] = self.normal_ico_button
-                x_coord_ico += int(ac.ico_size/2)
-                y_coord_ico += int(ac.ico_size/2)
-                ico_obj = self.create_image(x_coord_ico, y_coord_ico, image=self.normal_ico_button)
-                self.itemconfig(ico_obj, tags=np)
-                self.ico_objs[np] = {'img': ico_obj, 'state': 'normal', 'x': x_coord_ico, 'y': y_coord_ico}
+            y_coord_text = y_offset+int(ac.text_label/2)
+            self.create_text(x_coord_text, y_coord_text, text=int(np + 1), fill='black')
+            # рисуем иконку с зелёными ножницами
+            # пропускаем отрисовку последней кнопки ножниц
+            if (np + 1) == self.page_counts:
+                break
+            # расчитываем координаты x и y на холсте для иконки ножниц
+            x_coord_ico = ac.min_height_a4
+            y_coord_ico = y_offset + ac.text_label
 
-                # связвываем с картинкой код обработчика
-                self.tag_bind(self.ico_objs[np]['img'], '<ButtonPress-1>', self.ico_click)
+            # помещаем иконку зеленых ножниц на канву
+            self.ico_dict[np] = self.normal_ico_button
+            x_coord_ico += int(ac.ico_size/2)
+            y_coord_ico += int(ac.ico_size/2)
+            ico_obj = self.create_image(x_coord_ico, y_coord_ico, image=self.normal_ico_button)
+            self.itemconfig(ico_obj, tags=np)
+            self.ico_objs[np] = {'img': ico_obj, 'state': 'normal', 'x': x_coord_ico, 'y': y_coord_ico}
 
-                self.page_range_coord[np].render = False
-            # инвертируем флаг self.first_render, и больше в эту веточку не заходим
-            self.first_render = False
+            # связвываем с картинкой код обработчика
+            self.tag_bind(self.ico_objs[np]['img'], '<ButtonPress-1>', self.ico_click)
+
+            self.page_range_coord[np].render = False
 
 
         # через жопу очищаем содержимое очереди

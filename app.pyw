@@ -104,6 +104,7 @@ class App():
         if not self.pdf_file_name:
             return
         fp = open(self.pdf_file_name, 'rb')
+        # Отлавливаем исключения с возможными проблемами с открытием файла.
         try:
             yap = PdfFileReader(fp)
             tmp = str(yap.documentInfo)
