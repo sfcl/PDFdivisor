@@ -57,15 +57,20 @@ class ScrolledCanvas(Canvas):
         self.vbar.config(command=self.click_arrow)                # call on scroll move
         self.config(yscrollcommand=self.vbar.set)           # call on canvas move
         self.vbar.bind('<ButtonRelease-1>', self.callback)
+        self.vbar.bind("<MouseWheel>", self.mouse_wheel)
+        self.bind("<MouseWheel>", self.mouse_wheel)
 
     def click_arrow(self, *argv):
-        #print(argv)
-        #self.yview(argv[0], argv[1], argv[2])
         self.yview(*argv)
         self.callback()
 
-    def render_one_page(self, num_img):
-        pass
+    def mouse_wheel(self, event):
+        '''
+        Прокручиваем канву при скроллировании ролика мыши
+        '''
+        self.yview("scroll", int((-1)*event.delta / 120), "units")
+        self.callback()
+
 
     def callback(self, event=None):
         '''
