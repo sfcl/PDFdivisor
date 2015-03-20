@@ -107,9 +107,13 @@ class ScrolledCanvas(Canvas):
         Производит рендеринг перечисленных в списке list_pages страниц
         '''
 
-        # производим отрисовку всех кнопок "ножниц" и номеров страниц на канве
-        # данный блок выполняется только один раз
+        # производим отрисовку кнопок "ножниц" и номеров страниц на канве
+        # если страница отрендерина, то не рисуем картинку
         for np in list_pages:
+
+            if self.page_range_coord[np].render:
+                continue
+
             orient_page = self.page_range_coord[np].orient
             y_offset = self.page_range_coord[np].y_offset
             if orient_page == 'b':
