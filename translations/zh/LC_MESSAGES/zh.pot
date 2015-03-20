@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-02-28 13:24+Çàïàäíàÿ Àçèÿ (çèìà)\n"
+"PO-Revision-Date: 2015-03-20 23:40+0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"X-Generator: Poedit 1.7.4\n"
+
+#: app.pyw:87
+msgid "PDF document"
+msgstr "PDF文檔"
+
+#: app.pyw:88
+msgid "Select PDF file"
+msgstr "選擇PDF文件。"
+
+#: app.pyw:93
+msgid "Select directoy to save PDF files"
+msgstr "選擇一個目錄來保存PDF文件。"
+
+#: app.pyw:96
+msgid "About program"
+msgstr "關於該計劃"
+
+#: app.pyw:97
+msgid "Author program:"
+msgstr "作者程序："
+
+#: app.pyw:97
+msgid "Hozyainov Maxim"
+msgstr "Hozyainov Maxim"
+
+#: app.pyw:97
+msgid "Version:"
+msgstr "版本"
+
+#: app.pyw:111 app.pyw:117
+msgid "Error"
+msgstr "錯誤"
+
+#: app.pyw:112
+msgid "Need to select folder to save PDF files"
+msgstr "你必須選擇一個目錄來保存PDF文件。"
+
+#: app.pyw:118
+msgid "Need to select PDF file"
+msgstr "你必須選擇一個PDF文件。"
+
+msgid "license"
+msgstr "許可證"
+
+msgid "Process end"
+msgstr "流程結束"
+
+msgid "Process end successfully"
+msgstr "拆分過程已成功完成。"

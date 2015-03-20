@@ -218,6 +218,9 @@ class App():
 if locale.getdefaultlocale()[0].split('_')[0].upper() == 'RU':
     ru = gettext.translation('ru', localedir='translations', languages=['ru'])
     ru.install()
+elif locale.getdefaultlocale()[0].split('_')[0].upper() == 'ZH':
+    zh = gettext.translation('zh', localedir='translations', languages=['zh'])
+    zh.install()
 else:
     # для всех остальных локализаций будем показывать сообщения на английском
     en = gettext.translation('en', localedir='translations', languages=['en'])
