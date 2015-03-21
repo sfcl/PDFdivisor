@@ -77,8 +77,8 @@ class App():
         self.b5.image = exitico
         self.b5.pack(padx=2, pady=2, side=LEFT)
 
-        # self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='determinate')
-        # self.pgBar.pack(padx=2, pady=2, side=RIGHT)
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=ac.pl, mode='determinate')
+        self.pgBar.pack(padx=2, pady=2, side=RIGHT)
 
         self.context_line = my_status_bar(self.frame)
         self.context_line.pack(side=BOTTOM, fill=X)
@@ -134,8 +134,11 @@ class App():
         self.output_directory = filedialog.askdirectory(title=_('Select directoy to save PDF files'), parent=self.frame)
 
     def split_thread(self):
-        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='indeterminate')
-        self.pgBar.start()
+        #self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=100, mode='indeterminate')
+        self.pgBar.destroy()
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', mode='indeterminate', length=ac.pl)
+        self.pgBar.pack(padx=2, pady=2, side=RIGHT)
+        self.pgBar.start(20)
         base_file_name = os.path.basename(self.pdf_file_name)[:-4]
         tmp_list = self.pdf_split_range.get_all()
         # выполняем основную работу по разбивке PDF документа
@@ -168,6 +171,9 @@ class App():
                     outfile.write(f)
 
         self.pgBar.stop()
+        self.pgBar.destroy()
+        self.pgBar = ttk.Progressbar(self.button_pannel, orient='horizontal', length=ac.pl, mode='determinate')
+        self.pgBar.pack(padx=2, pady=2, side=RIGHT)
         title = _('Process end')
         message = _('Process end successfully')
         messagebox.showinfo(title, message)
@@ -206,7 +212,7 @@ class App():
 
         # запуск потока
         threading.Thread(target=self.split_thread, args=()).start()
-
+        #self.split_thread()
 
     def quit(self, master):
         master.destroy()
@@ -226,7 +232,7 @@ else:
     en = gettext.translation('en', localedir='translations', languages=['en'])
     en.install()
 
-version = '0.2.9'
+version = '0.2.10'
 
 
 root = Tk()
